@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import SongList from "../components/SongList"
 
 class ItunesContainer extends Component {
   constructor(props){
@@ -11,6 +12,7 @@ class ItunesContainer extends Component {
     return (
       <div className="itunes-container">
         <p>Itunes Container</p>
+        <SongList></SongList>
       </div>
     )
   }
