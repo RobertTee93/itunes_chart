@@ -1,5 +1,6 @@
 import React from "react";
-import Song from "./Song"
+import Song from "./Song";
+import "./SongList.css"
 
 const SongList = ( { songs } ) => {
   if (!songs) return null;
