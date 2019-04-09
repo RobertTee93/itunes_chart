@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SongList from "../components/SongList"
+import MovieList from "../components/MovieList"
 
 class ItunesContainer extends Component {
   constructor(props){
@@ -8,17 +9,24 @@ class ItunesContainer extends Component {
       songs: [],
       movies: []
     }
-    this.fetchContent = this.fetchContent.bind(this)
+    this.fetchSongs = this.fetchSongs.bind(this)
+    this.fetchMovies = this.fetchMovies.bind(this)
   }
 
   componentDidMount(){
-    this.fetchContent("topsongs")
+    this.fetchMovies()
   }
 
-  fetchContent(type){
-    fetch("https://itunes.apple.com/gb/rss/" + type + "/limit=20/json")
+  fetchSongs(){
+    fetch("https://itunes.apple.com/gb/rss/topsongs/limit=20/json")
     .then(res => res.json())
-    .then(content => this.setState({ songs: content.feed.entry }))
+    .then(content => this.setState({ songs: content.feed.entry, movies: [] }))
+  }
+
+  fetchMovies(){
+    fetch("https://itunes.apple.com/gb/rss/topmovies/limit=20/json")
+    .then(res => res.json())
+    .then(content => this.setState({ movies: content.feed.entry, songs: [] }))
   }
 
   render(){
@@ -26,6 +34,8 @@ class ItunesContainer extends Component {
       <div className="itunes-container">
         <h1>Top 20 iTunes UK</h1>
         <SongList songs={ this.state.songs }></SongList>
+        <MovieList movies= { this.state.movies }></MovieList>
+
       </div>
     )
   }
