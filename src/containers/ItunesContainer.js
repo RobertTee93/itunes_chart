@@ -33,8 +33,8 @@ class ItunesContainer extends Component {
     return (
       <div className="itunes-container">
         <h1>Top 20 iTunes UK</h1>
-        <button onClick={this.fetchMovies}>Movies</button>
-        <button onClick={this.fetchSongs}>Music</button>
+        <div className="button" onClick={this.fetchMovies}>Movies</div>
+        <div className="button" onClick={this.fetchSongs}>Music</div>
         <SongList songs={ this.state.songs }></SongList>
         <MovieList movies= { this.state.movies }></MovieList>
 
